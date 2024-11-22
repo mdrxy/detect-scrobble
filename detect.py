@@ -12,7 +12,7 @@ USER = ""
 
 def get_recent_scrobble(user, api_key):
     """
-    Returns the timestamp of the most recent scrobble.
+    Get information on the most recent scrobble.
 
     Parameters:
     - user (str): Last.fm username
