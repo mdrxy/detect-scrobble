@@ -55,9 +55,9 @@ def check_scrobble_age():
     if most_recent_time:
         now = datetime.now(timezone.utc)
         delta = now - most_recent_time
-        if delta.total_seconds() > 21600:
+        if delta.total_seconds() > 43200:
             print(
-                "Alert: No scrobble in the past 6 hours."
+                "Alert: No scrobble in the past 12 hours."
                 f'Last scrobble at {most_recent_time} with "{artist} - {name}"'
             )
         else:
