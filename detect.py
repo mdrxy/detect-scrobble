@@ -87,4 +87,5 @@ def check_scrobble_age():
 
 
 if __name__ == "__main__":
+    send_message("Checking Last.fm scrobble status...")
     check_scrobble_age()
