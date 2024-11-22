@@ -3,11 +3,16 @@ Sanity check for Last.fm scrobbles.
 """
 
 from datetime import datetime, timezone
+import os
 import requests
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configuration
-API_KEY = ""
-USER = ""
+API_KEY = os.getenv("LASTFM_API_KEY")
+USER = os.getenv("LASTFM_USER")
 
 
 def get_recent_scrobble(user, api_key):
