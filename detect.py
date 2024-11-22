@@ -13,6 +13,21 @@ load_dotenv()
 # Configuration
 API_KEY = os.getenv("LASTFM_API_KEY")
 USER = os.getenv("LASTFM_USER")
+BOT_ID = os.getenv("GROUPME_BOT_ID")
+
+GROUPME_BOT_URL = "https://api.groupme.com/v3/bots/post"
+
+
+def send_message(message):
+    """
+    Alert a GroupMe group.
+    """
+    data = {"bot_id": BOT_ID, "text": message}
+    response = requests.post(GROUPME_BOT_URL, json=data, timeout=10)
+    if response.status_code == 202:
+        print("Message sent successfully!")
+    else:
+        print(f"Failed to send message: {response.status_code}, {response.text}")
 
 
 def get_recent_scrobble(user, api_key):
@@ -59,6 +74,9 @@ def check_scrobble_age():
             print(
                 "Alert: No scrobble in the past 12 hours."
                 f'Last scrobble at {most_recent_time} with "{artist} - {name}"'
+            )
+            send_message(
+                f'WARNING: No scrobbles detected on "{USER}" in the past 12 hours.'
             )
         else:
             print(
